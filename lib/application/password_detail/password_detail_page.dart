@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:password_demo/constants.dart';
-import 'package:password_demo/domain/password_item.dart';
 
 class PasswordDetailPage extends StatefulWidget {
-  final PasswordItem? initialValue;
+  final String? itemId;
 
   const PasswordDetailPage({
     super.key,
-    this.initialValue,
+    required this.itemId,
   });
 
   @override
@@ -20,13 +20,13 @@ class _PasswordDetailPageState extends State<PasswordDetailPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('Detail hesla'),
+          title: const Text('Detail hesla'),
           actions: [
             IconButton(
               onPressed: () {
-                // TODO navigate to edit page
+                context.goNamed('edit', params: {'itemId': '${widget.itemId}'});
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.edit,
                 size: kIconSizeSmall,
               ),
