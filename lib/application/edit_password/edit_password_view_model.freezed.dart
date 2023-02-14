@@ -16,7 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EditPasswordState {
-  String get name => throw _privateConstructorUsedError;
+  int get itemId => throw _privateConstructorUsedError;
+  bool get isProcessing => throw _privateConstructorUsedError;
+  Option<Either<ItemProcessingState, String>>? get stateOrError =>
+      throw _privateConstructorUsedError;
+  Option<Either<PasswordItemDto, String>>? get itemOrError =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EditPasswordStateCopyWith<EditPasswordState> get copyWith =>
@@ -29,7 +34,11 @@ abstract class $EditPasswordStateCopyWith<$Res> {
           EditPasswordState value, $Res Function(EditPasswordState) then) =
       _$EditPasswordStateCopyWithImpl<$Res, EditPasswordState>;
   @useResult
-  $Res call({String name});
+  $Res call(
+      {int itemId,
+      bool isProcessing,
+      Option<Either<ItemProcessingState, String>>? stateOrError,
+      Option<Either<PasswordItemDto, String>>? itemOrError});
 }
 
 /// @nodoc
@@ -45,13 +54,28 @@ class _$EditPasswordStateCopyWithImpl<$Res, $Val extends EditPasswordState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? itemId = null,
+    Object? isProcessing = null,
+    Object? stateOrError = freezed,
+    Object? itemOrError = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      itemId: null == itemId
+          ? _value.itemId
+          : itemId // ignore: cast_nullable_to_non_nullable
+              as int,
+      isProcessing: null == isProcessing
+          ? _value.isProcessing
+          : isProcessing // ignore: cast_nullable_to_non_nullable
+              as bool,
+      stateOrError: freezed == stateOrError
+          ? _value.stateOrError
+          : stateOrError // ignore: cast_nullable_to_non_nullable
+              as Option<Either<ItemProcessingState, String>>?,
+      itemOrError: freezed == itemOrError
+          ? _value.itemOrError
+          : itemOrError // ignore: cast_nullable_to_non_nullable
+              as Option<Either<PasswordItemDto, String>>?,
     ) as $Val);
   }
 }
@@ -64,7 +88,11 @@ abstract class _$$_EditPasswordStateCopyWith<$Res>
       __$$_EditPasswordStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name});
+  $Res call(
+      {int itemId,
+      bool isProcessing,
+      Option<Either<ItemProcessingState, String>>? stateOrError,
+      Option<Either<PasswordItemDto, String>>? itemOrError});
 }
 
 /// @nodoc
@@ -78,13 +106,28 @@ class __$$_EditPasswordStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? itemId = null,
+    Object? isProcessing = null,
+    Object? stateOrError = freezed,
+    Object? itemOrError = freezed,
   }) {
     return _then(_$_EditPasswordState(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      itemId: null == itemId
+          ? _value.itemId
+          : itemId // ignore: cast_nullable_to_non_nullable
+              as int,
+      isProcessing: null == isProcessing
+          ? _value.isProcessing
+          : isProcessing // ignore: cast_nullable_to_non_nullable
+              as bool,
+      stateOrError: freezed == stateOrError
+          ? _value.stateOrError
+          : stateOrError // ignore: cast_nullable_to_non_nullable
+              as Option<Either<ItemProcessingState, String>>?,
+      itemOrError: freezed == itemOrError
+          ? _value.itemOrError
+          : itemOrError // ignore: cast_nullable_to_non_nullable
+              as Option<Either<PasswordItemDto, String>>?,
     ));
   }
 }
@@ -92,14 +135,28 @@ class __$$_EditPasswordStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_EditPasswordState implements _EditPasswordState {
-  const _$_EditPasswordState({required this.name});
+  const _$_EditPasswordState(
+      {this.itemId = -1,
+      this.isProcessing = false,
+      this.stateOrError,
+      this.itemOrError})
+      : assert(stateOrError != null, 'stateOrError cannot be empty'),
+        assert(itemOrError != null, 'itemOrError cannot be empty');
 
   @override
-  final String name;
+  @JsonKey()
+  final int itemId;
+  @override
+  @JsonKey()
+  final bool isProcessing;
+  @override
+  final Option<Either<ItemProcessingState, String>>? stateOrError;
+  @override
+  final Option<Either<PasswordItemDto, String>>? itemOrError;
 
   @override
   String toString() {
-    return 'EditPasswordState(name: $name)';
+    return 'EditPasswordState(itemId: $itemId, isProcessing: $isProcessing, stateOrError: $stateOrError, itemOrError: $itemOrError)';
   }
 
   @override
@@ -107,11 +164,18 @@ class _$_EditPasswordState implements _EditPasswordState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EditPasswordState &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.itemId, itemId) || other.itemId == itemId) &&
+            (identical(other.isProcessing, isProcessing) ||
+                other.isProcessing == isProcessing) &&
+            (identical(other.stateOrError, stateOrError) ||
+                other.stateOrError == stateOrError) &&
+            (identical(other.itemOrError, itemOrError) ||
+                other.itemOrError == itemOrError));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode =>
+      Object.hash(runtimeType, itemId, isProcessing, stateOrError, itemOrError);
 
   @JsonKey(ignore: true)
   @override
@@ -122,11 +186,21 @@ class _$_EditPasswordState implements _EditPasswordState {
 }
 
 abstract class _EditPasswordState implements EditPasswordState {
-  const factory _EditPasswordState({required final String name}) =
+  const factory _EditPasswordState(
+          {final int itemId,
+          final bool isProcessing,
+          final Option<Either<ItemProcessingState, String>>? stateOrError,
+          final Option<Either<PasswordItemDto, String>>? itemOrError}) =
       _$_EditPasswordState;
 
   @override
-  String get name;
+  int get itemId;
+  @override
+  bool get isProcessing;
+  @override
+  Option<Either<ItemProcessingState, String>>? get stateOrError;
+  @override
+  Option<Either<PasswordItemDto, String>>? get itemOrError;
   @override
   @JsonKey(ignore: true)
   _$$_EditPasswordStateCopyWith<_$_EditPasswordState> get copyWith =>

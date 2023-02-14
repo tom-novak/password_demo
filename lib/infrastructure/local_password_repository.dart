@@ -10,26 +10,23 @@ class LocalPasswordRepository extends PasswordRepository {
   LocalPasswordRepository({required this.dataStore});
 
   @override
-  Future<bool> delete({required int itemId}) async {
-    return Future.value(false);
-    //return dataStore.delete(itemId);
+  Future<void> delete({required int itemId}) async {
+    return dataStore.remove(itemId);
   }
 
   @override
-  Future<PasswordItemDto> get({required int itemId}) async {
-    return Future.value(PasswordItemDto.mock());
-    //eturn dataStore.get(itemId);
+  Future<PasswordItemDto?> get({required int itemId}) async {
+    return dataStore.get(itemId);
   }
 
   @override
-  Future<PasswordItemDto> save({required PasswordItemDto item}) async {
-    return Future.value(PasswordItemDto.mock());
-    //return dataStore.createOrUpdate(item);
+  Future<void> save({required PasswordItemDto item}) async {
+    dataStore.create(item);
   }
 
   @override
   Future<void> update({required PasswordItemDto item}) async {
-    return dataStore.save(item);
+    return dataStore.updateItem(item);
   }
 
   @override

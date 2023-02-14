@@ -6,11 +6,15 @@ import 'package:password_demo/data/password_item_dto.dart';
 abstract class PasswordDataDao extends PasswordDataStore {
   @override
   @insert
-  Future<void> save(PasswordItemDto item);
+  Future<void> create(PasswordItemDto item);
 
   @override
-  @delete
-  Future<void> deleteItem(PasswordItemDto item);
+  @update
+  Future<void> updateItem(PasswordItemDto item);
+
+  @override
+  @Query('DELETE FROM PasswordItem WHERE id = :itemId')
+  Future<void> remove(int itemId);
 
   @override
   @Query('SELECT * FROM PasswordItem WHERE id = :itemId')

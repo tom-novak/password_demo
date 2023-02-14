@@ -85,7 +85,7 @@ class _$PasswordItemsDatabase extends PasswordItemsDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `PasswordItem` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `login` TEXT NOT NULL, `password` TEXT NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `PasswordItem` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `login` TEXT NOT NULL, `password` TEXT NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -114,7 +114,7 @@ class _$PasswordDataDao extends PasswordDataDao {
                   'login': item.login,
                   'password': item.password
                 }),
-        _passwordItemDtoDeletionAdapter = DeletionAdapter(
+        _passwordItemDtoUpdateAdapter = UpdateAdapter(
             database,
             'PasswordItem',
             ['id'],
@@ -133,13 +133,19 @@ class _$PasswordDataDao extends PasswordDataDao {
 
   final InsertionAdapter<PasswordItemDto> _passwordItemDtoInsertionAdapter;
 
-  final DeletionAdapter<PasswordItemDto> _passwordItemDtoDeletionAdapter;
+  final UpdateAdapter<PasswordItemDto> _passwordItemDtoUpdateAdapter;
+
+  @override
+  Future<void> remove(int itemId) async {
+    await _queryAdapter.queryNoReturn('DELETE FROM PasswordItem WHERE id = ?1',
+        arguments: [itemId]);
+  }
 
   @override
   Future<PasswordItemDto?> get(int itemId) async {
     return _queryAdapter.query('SELECT * FROM PasswordItem WHERE id = ?1',
         mapper: (Map<String, Object?> row) => PasswordItemDto(
-            id: row['id'] as int,
+            id: row['id'] as int?,
             name: row['name'] as String,
             login: row['login'] as String,
             password: row['password'] as String),
@@ -153,18 +159,18 @@ class _$PasswordDataDao extends PasswordDataDao {
   ) async {
     return _queryAdapter.queryList(
         'SELECT * FROM PasswordItem WHERE oid NOT IN (SELECT oid FROM PasswordItem ORDER BY id ASC LIMIT ?2) ORDER BY id ASC LIMIT ?1',
-        mapper: (Map<String, Object?> row) => PasswordItemDto(id: row['id'] as int, name: row['name'] as String, login: row['login'] as String, password: row['password'] as String),
+        mapper: (Map<String, Object?> row) => PasswordItemDto(id: row['id'] as int?, name: row['name'] as String, login: row['login'] as String, password: row['password'] as String),
         arguments: [itemsCount, offset]);
   }
 
   @override
-  Future<void> save(PasswordItemDto item) async {
+  Future<void> create(PasswordItemDto item) async {
     await _passwordItemDtoInsertionAdapter.insert(
         item, OnConflictStrategy.abort);
   }
 
   @override
-  Future<void> deleteItem(PasswordItemDto item) async {
-    await _passwordItemDtoDeletionAdapter.delete(item);
+  Future<void> updateItem(PasswordItemDto item) async {
+    await _passwordItemDtoUpdateAdapter.update(item, OnConflictStrategy.abort);
   }
 }
