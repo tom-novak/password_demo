@@ -65,4 +65,8 @@ class EditPasswordViewModel extends Cubit<EditPasswordState> {
       ),
     );
   }
+
+  void loadPassword(String key) {
+
+  }
 }
