@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -66,12 +67,30 @@ class _PasswordDetailPageState extends State<PasswordDetailPage> {
                                       ],
                                     ),
                                     const Gap(16.0),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                    Row(
                                       children: [
-                                        const Text('Login'),
-                                        Text('${item.login}'),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const Text('Login'),
+                                              Text('${item.login}'),
+                                            ],
+                                          ),
+                                        ),
+                                        IconButton(
+                                          onPressed: () {
+                                            Clipboard.setData(
+                                              ClipboardData(text: item.login),
+                                            ).then((value) => ScaffoldMessenger
+                                                    .of(context)
+                                                .showSnackBar(const SnackBar(
+                                                    content: Text(
+                                                        'Přihlašovací jméno zkopírováno'))));
+                                          },
+                                          icon: const Icon(Icons.copy),
+                                        ),
                                       ],
                                     ),
                                     const Gap(16.0),
@@ -101,6 +120,19 @@ class _PasswordDetailPageState extends State<PasswordDetailPage> {
                                                 : Icons.visibility_off,
                                             size: kIconSizeSmall,
                                           ),
+                                        ),
+                                        IconButton(
+                                          onPressed: () {
+                                            Clipboard.setData(
+                                              ClipboardData(
+                                                  text: item.password),
+                                            ).then((value) => ScaffoldMessenger
+                                                    .of(context)
+                                                .showSnackBar(const SnackBar(
+                                                    content: Text(
+                                                        'Heslo zkopírováno'))));
+                                          },
+                                          icon: const Icon(Icons.copy),
                                         ),
                                       ],
                                     ),
