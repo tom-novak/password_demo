@@ -11,6 +11,4 @@ abstract class PasswordRepository {
   Future<void> delete({required int itemId});
 
   Future<void> update({required PasswordItemDto item});
-
-  Future<void> getPassword({required PasswordItemDto item});
 }

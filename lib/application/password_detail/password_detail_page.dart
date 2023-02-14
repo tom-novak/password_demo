@@ -83,7 +83,8 @@ class _PasswordDetailPageState extends State<PasswordDetailPage> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               const Text('Password'),
-                                              Text('${item.password}'),
+                                              Text(
+                                                  '${_passwordVisible ? item.password : "********"}'),
                                             ],
                                           ),
                                         ),
@@ -96,8 +97,8 @@ class _PasswordDetailPageState extends State<PasswordDetailPage> {
                                           },
                                           icon: Icon(
                                             _passwordVisible
-                                                ? Icons.visibility_off
-                                                : Icons.visibility,
+                                                ? Icons.visibility
+                                                : Icons.visibility_off,
                                             size: kIconSizeSmall,
                                           ),
                                         ),

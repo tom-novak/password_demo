@@ -69,8 +69,8 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
                     (itemOrError) => itemOrError.fold((item) {
                           nameController.text = item.name;
                           loginController.text = item.login;
-                          passwordController.text = item.password;
-                          repeatPasswordController.text = item.password;
+                          passwordController.text = item.password ?? '';
+                          repeatPasswordController.text = item.password ?? '';
                         }, (errorMessage) => null));
               }),
             ],

@@ -85,7 +85,7 @@ class _$PasswordItemsDatabase extends PasswordItemsDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `PasswordItem` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `login` TEXT NOT NULL, `password` TEXT NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `PasswordItem` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `login` TEXT NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -111,8 +111,7 @@ class _$PasswordDataDao extends PasswordDataDao {
             (PasswordItemDto item) => <String, Object?>{
                   'id': item.id,
                   'name': item.name,
-                  'login': item.login,
-                  'password': item.password
+                  'login': item.login
                 }),
         _passwordItemDtoUpdateAdapter = UpdateAdapter(
             database,
@@ -121,8 +120,7 @@ class _$PasswordDataDao extends PasswordDataDao {
             (PasswordItemDto item) => <String, Object?>{
                   'id': item.id,
                   'name': item.name,
-                  'login': item.login,
-                  'password': item.password
+                  'login': item.login
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -147,8 +145,7 @@ class _$PasswordDataDao extends PasswordDataDao {
         mapper: (Map<String, Object?> row) => PasswordItemDto(
             id: row['id'] as int?,
             name: row['name'] as String,
-            login: row['login'] as String,
-            password: row['password'] as String),
+            login: row['login'] as String),
         arguments: [itemId]);
   }
 
@@ -159,7 +156,7 @@ class _$PasswordDataDao extends PasswordDataDao {
   ) async {
     return _queryAdapter.queryList(
         'SELECT * FROM PasswordItem WHERE oid NOT IN (SELECT oid FROM PasswordItem ORDER BY id ASC LIMIT ?2) ORDER BY id ASC LIMIT ?1',
-        mapper: (Map<String, Object?> row) => PasswordItemDto(id: row['id'] as int?, name: row['name'] as String, login: row['login'] as String, password: row['password'] as String),
+        mapper: (Map<String, Object?> row) => PasswordItemDto(id: row['id'] as int?, name: row['name'] as String, login: row['login'] as String),
         arguments: [itemsCount, offset]);
   }
 
