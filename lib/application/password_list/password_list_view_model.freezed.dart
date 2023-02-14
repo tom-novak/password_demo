@@ -15,13 +15,27 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PasswordListState {}
+mixin _$PasswordListState {
+  bool get isLoading => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  Either<PasswordItemDto, String>? get itemsOrFailure =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PasswordListStateCopyWith<PasswordListState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $PasswordListStateCopyWith<$Res> {
   factory $PasswordListStateCopyWith(
           PasswordListState value, $Res Function(PasswordListState) then) =
       _$PasswordListStateCopyWithImpl<$Res, PasswordListState>;
+  @useResult
+  $Res call(
+      {bool isLoading,
+      int page,
+      Either<PasswordItemDto, String>? itemsOrFailure});
 }
 
 /// @nodoc
@@ -33,13 +47,43 @@ class _$PasswordListStateCopyWithImpl<$Res, $Val extends PasswordListState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? page = null,
+    Object? itemsOrFailure = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      itemsOrFailure: freezed == itemsOrFailure
+          ? _value.itemsOrFailure
+          : itemsOrFailure // ignore: cast_nullable_to_non_nullable
+              as Either<PasswordItemDto, String>?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_PasswordListStateCopyWith<$Res> {
+abstract class _$$_PasswordListStateCopyWith<$Res>
+    implements $PasswordListStateCopyWith<$Res> {
   factory _$$_PasswordListStateCopyWith(_$_PasswordListState value,
           $Res Function(_$_PasswordListState) then) =
       __$$_PasswordListStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool isLoading,
+      int page,
+      Either<PasswordItemDto, String>? itemsOrFailure});
 }
 
 /// @nodoc
@@ -49,28 +93,89 @@ class __$$_PasswordListStateCopyWithImpl<$Res>
   __$$_PasswordListStateCopyWithImpl(
       _$_PasswordListState _value, $Res Function(_$_PasswordListState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? page = null,
+    Object? itemsOrFailure = freezed,
+  }) {
+    return _then(_$_PasswordListState(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      itemsOrFailure: freezed == itemsOrFailure
+          ? _value.itemsOrFailure
+          : itemsOrFailure // ignore: cast_nullable_to_non_nullable
+              as Either<PasswordItemDto, String>?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_PasswordListState implements _PasswordListState {
-  const _$_PasswordListState();
+  const _$_PasswordListState(
+      {this.isLoading = false, this.page = 0, this.itemsOrFailure});
+
+  @override
+  @JsonKey()
+  final bool isLoading;
+  @override
+  @JsonKey()
+  final int page;
+  @override
+  final Either<PasswordItemDto, String>? itemsOrFailure;
 
   @override
   String toString() {
-    return 'PasswordListState()';
+    return 'PasswordListState(isLoading: $isLoading, page: $page, itemsOrFailure: $itemsOrFailure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_PasswordListState);
+        (other.runtimeType == runtimeType &&
+            other is _$_PasswordListState &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.itemsOrFailure, itemsOrFailure) ||
+                other.itemsOrFailure == itemsOrFailure));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isLoading, page, itemsOrFailure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PasswordListStateCopyWith<_$_PasswordListState> get copyWith =>
+      __$$_PasswordListStateCopyWithImpl<_$_PasswordListState>(
+          this, _$identity);
 }
 
 abstract class _PasswordListState implements PasswordListState {
-  const factory _PasswordListState() = _$_PasswordListState;
+  const factory _PasswordListState(
+          {final bool isLoading,
+          final int page,
+          final Either<PasswordItemDto, String>? itemsOrFailure}) =
+      _$_PasswordListState;
+
+  @override
+  bool get isLoading;
+  @override
+  int get page;
+  @override
+  Either<PasswordItemDto, String>? get itemsOrFailure;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PasswordListStateCopyWith<_$_PasswordListState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

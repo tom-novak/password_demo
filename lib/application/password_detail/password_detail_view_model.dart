@@ -8,7 +8,7 @@ part 'password_detail_view_model.freezed.dart';
 class PasswordDetailViewModel extends Cubit<PasswordDetailState> {
   final PasswordRepository repository;
 
-  PasswordDetailViewModel(
-    this.repository,
-  ) : super(PasswordDetailState.initial());
+  PasswordDetailViewModel({
+    required this.repository,
+  }) : super(PasswordDetailState.initial());
 }

@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:local_auth/local_auth.dart';
 
-part 'local_auth_repository.freezed.dart';
-part 'local_auth_repository_state.dart';
+part 'local_auth_cubit.freezed.dart';
+part 'local_auth_cubit_state.dart';
 
 enum SupportState {
   unknown,
@@ -13,12 +13,12 @@ enum SupportState {
   unsupported,
 }
 
-class LocalAuthRepository extends Cubit<LocalAuthRepositoryState> {
+class LocalAuthCubit extends Cubit<LocalAuthCubitState> {
   late final LocalAuthentication auth;
 
-  LocalAuthRepository({
+  LocalAuthCubit({
     required this.auth,
-  }) : super(LocalAuthRepositoryState.initial());
+  }) : super(LocalAuthCubitState.initial());
 
   void init() {
     auth.isDeviceSupported().then(
