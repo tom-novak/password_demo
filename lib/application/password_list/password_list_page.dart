@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:password_demo/application/application.dart';
 import 'package:password_demo/domain/password_repository.dart';
+import 'package:password_demo/infrastructure/local_auth/local_auth_cubit.dart';
 
 class PasswordListPage extends StatelessWidget {
   const PasswordListPage({super.key});
@@ -18,6 +19,14 @@ class PasswordListPage extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 title: const Text('Hesla'),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.lock),
+                    onPressed: () {
+                      context.read<LocalAuthCubit>().lock();
+                    },
+                  )
+                ],
               ),
               floatingActionButton: FloatingActionButton(
                 onPressed: () => context.goNamed('new'),

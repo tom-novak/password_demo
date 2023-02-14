@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:password_demo/infrastructure/local_auth/local_auth_cubit.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -12,8 +13,16 @@ class LoginPage extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () => context.goNamed('home'),
-          child: const Text('Login'),
+          onPressed: () => context.read<LocalAuthCubit>().authenticate(),
+          style: ElevatedButton.styleFrom(
+            shape: const CircleBorder(),
+            padding: const EdgeInsets.all(20),
+            backgroundColor: Colors.blue,
+          ),
+          child: const Icon(
+            Icons.fingerprint,
+            size: 48.0,
+          ),
         ),
       ),
     );

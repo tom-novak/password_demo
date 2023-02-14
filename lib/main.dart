@@ -36,6 +36,7 @@ class PasswordDemoApp extends StatefulWidget {
 
 class _PasswordDemoAppState extends State<PasswordDemoApp> {
   final _router = GoRouter(
+    initialLocation: '/login',
     routes: [
       GoRoute(
         name: 'home',
@@ -82,6 +83,12 @@ class _PasswordDemoAppState extends State<PasswordDemoApp> {
         path: '/login',
         builder: (context, state) => const LoginPage(),
       ),
+      GoRoute(
+          name: 'unsupporeted',
+          path: '/unsupported',
+          builder: (context, state) => const Scaffold(
+                body: GeneralErrorPage(),
+              ))
     ],
   );
 
@@ -102,15 +109,35 @@ class _PasswordDemoAppState extends State<PasswordDemoApp> {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (_) => LocalAuthCubit(auth: LocalAuthentication()),
+            create: (_) => LocalAuthCubit(auth: LocalAuthentication())..init(),
           )
         ],
-        child: MaterialApp.router(
-          title: 'Správce hesel',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<LocalAuthCubit, LocalAuthCubitState>(
+                listener: (context, state) {
+              state.authorized.fold(
+                () => null,
+                (authorizedStateOrFailure) =>
+                    authorizedStateOrFailure.fold((authorizedState) {
+                  switch (authorizedState) {
+                    case 'Authorized':
+                      _router.goNamed('home');
+                      break;
+                    default:
+                      _router.goNamed('login');
+                  }
+                }, (errorMessage) => null),
+              );
+            }),
+          ],
+          child: MaterialApp.router(
+            title: 'Správce hesel',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            routerConfig: _router,
           ),
-          routerConfig: _router,
         ),
       ),
     );
