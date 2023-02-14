@@ -5,7 +5,9 @@ abstract class PasswordDataStore {
 
   Future<List<PasswordItemDto>> getByOffset(int itemsCount, int offset);
 
-  Future<void> save(PasswordItemDto item);
+  Future<void> create(PasswordItemDto item);
 
-  Future<void> deleteItem(PasswordItemDto item);
+  Future<void> updateItem(PasswordItemDto item);
+
+  Future<void> remove(int itemId);
 }

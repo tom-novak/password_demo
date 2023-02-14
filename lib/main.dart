@@ -51,9 +51,21 @@ class _PasswordDemoAppState extends State<PasswordDemoApp> {
               GoRoute(
                 name: 'edit',
                 path: 'edit',
-                builder: (context, state) => EditPasswordPage(
-                  itemId: state.params['itemId'],
-                ),
+                builder: (context, state) {
+                  if (state.params['itemId'] != null) {
+                    var itemId = int.tryParse(state.params['itemId']!);
+                    return EditPasswordPage(itemId: itemId);
+                  } else {
+                    return Scaffold(
+                      appBar: AppBar(
+                        title: const Text('Error'),
+                      ),
+                      body: const Center(
+                        child: Text('Some error occured'),
+                      ),
+                    );
+                  }
+                },
               ),
             ],
           ),
@@ -82,7 +94,7 @@ class _PasswordDemoAppState extends State<PasswordDemoApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiRepositoryProvider(
       providers: [
         Provider<PasswordRepository>(
             create: (_) =>

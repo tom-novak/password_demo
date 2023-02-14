@@ -10,14 +10,10 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Login'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () => context.goNamed('home'),
-              child: const Text('Login'),
-            ),
-          ],
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => context.goNamed('home'),
+          child: const Text('Login'),
         ),
       ),
     );
