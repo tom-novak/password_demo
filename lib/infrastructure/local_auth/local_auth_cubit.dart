@@ -20,7 +20,7 @@ class LocalAuthCubit extends Cubit<LocalAuthCubitState> {
     required this.auth,
   }) : super(LocalAuthCubitState.initial());
 
-  void init() {
+  void init() async {
     auth.isDeviceSupported().then(
       (isSupported) {
         emit(state.copyWith(
@@ -31,6 +31,21 @@ class LocalAuthCubit extends Cubit<LocalAuthCubitState> {
     );
   }
 
+  void lock() async {
+    if (!state.isAuthenticating) {
+      emit(
+        state.copyWith(
+          isAuthenticating: false,
+          authorized: some(
+            left('Not Authorized'),
+          ),
+        ),
+      );
+    } else {
+      cancelAuthentication();
+    }
+  }
+
   void authenticate() async {
     if (!state.isAuthenticating) {
       emit(state.copyWith(isAuthenticating: true, authorized: none()));
@@ -38,7 +53,7 @@ class LocalAuthCubit extends Cubit<LocalAuthCubitState> {
         var authenticated = await auth.authenticate(
           localizedReason: 'Let OS determine authentication method',
           options: const AuthenticationOptions(
-            stickyAuth: true,
+            stickyAuth: false,
           ),
         );
         emit(state.copyWith(
@@ -62,7 +77,7 @@ class LocalAuthCubit extends Cubit<LocalAuthCubitState> {
           localizedReason:
               'Scan your fingerprint (or face or whatever) to authenticate',
           options: const AuthenticationOptions(
-            stickyAuth: true,
+            stickyAuth: false,
             biometricOnly: true,
           ),
         );
