@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:password_demo/application/application.dart';
 import 'package:password_demo/application/login/login_page.dart';
+import 'package:password_demo/application/widgets/general_error_page.dart';
 import 'package:password_demo/data/password_items_database.dart';
 import 'package:password_demo/data/sqlite/password_data_dao.dart';
 import 'package:password_demo/domain/password_repository.dart';
@@ -44,9 +45,14 @@ class _PasswordDemoAppState extends State<PasswordDemoApp> {
           GoRoute(
             name: 'detail',
             path: 'detail/:itemId',
-            builder: (context, state) => PasswordDetailPage(
-              itemId: state.params['itemId'],
-            ),
+            builder: (context, state) {
+              if (state.params['itemId'] != null) {
+                var itemId = int.tryParse(state.params['itemId']!);
+                return PasswordDetailPage(itemId: itemId);
+              } else {
+                return const GeneralErrorPage();
+              }
+            },
             routes: [
               GoRoute(
                 name: 'edit',
@@ -56,14 +62,7 @@ class _PasswordDemoAppState extends State<PasswordDemoApp> {
                     var itemId = int.tryParse(state.params['itemId']!);
                     return EditPasswordPage(itemId: itemId);
                   } else {
-                    return Scaffold(
-                      appBar: AppBar(
-                        title: const Text('Error'),
-                      ),
-                      body: const Center(
-                        child: Text('Some error occured'),
-                      ),
-                    );
+                    return const GeneralErrorPage();
                   }
                 },
               ),
