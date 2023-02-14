@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:password_demo/application/application.dart';
@@ -10,7 +11,6 @@ import 'package:password_demo/data/sqlite/password_data_dao.dart';
 import 'package:password_demo/domain/password_repository.dart';
 import 'package:password_demo/infrastructure/local_auth/local_auth_cubit.dart';
 import 'package:password_demo/infrastructure/local_password_repository.dart';
-import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -102,9 +102,10 @@ class _PasswordDemoAppState extends State<PasswordDemoApp> {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        Provider<PasswordRepository>(
-            create: (_) =>
-                LocalPasswordRepository(dataStore: widget.passwordDataDao))
+        RepositoryProvider<PasswordRepository>(
+            create: (_) => LocalPasswordRepository(
+                dataStore: widget.passwordDataDao,
+                secureStorage: const FlutterSecureStorage()))
       ],
       child: MultiBlocProvider(
         providers: [
