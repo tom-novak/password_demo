@@ -8,7 +8,7 @@ part 'edit_password_view_model.freezed.dart';
 class EditPasswordViewModel extends Cubit<EditPasswordState> {
   final PasswordRepository repository;
 
-  EditPasswordViewModel(
-    this.repository,
-  ) : super(EditPasswordState.initial());
+  EditPasswordViewModel({
+    required this.repository,
+  }) : super(EditPasswordState.initial());
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'local_auth_repository.dart';
+part of 'local_auth_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$LocalAuthRepositoryState {
+mixin _$LocalAuthCubitState {
   SupportState get supportState => throw _privateConstructorUsedError;
   List<BiometricType> get availableBiometrics =>
       throw _privateConstructorUsedError;
@@ -25,15 +25,15 @@ mixin _$LocalAuthRepositoryState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LocalAuthRepositoryStateCopyWith<LocalAuthRepositoryState> get copyWith =>
+  $LocalAuthCubitStateCopyWith<LocalAuthCubitState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LocalAuthRepositoryStateCopyWith<$Res> {
-  factory $LocalAuthRepositoryStateCopyWith(LocalAuthRepositoryState value,
-          $Res Function(LocalAuthRepositoryState) then) =
-      _$LocalAuthRepositoryStateCopyWithImpl<$Res, LocalAuthRepositoryState>;
+abstract class $LocalAuthCubitStateCopyWith<$Res> {
+  factory $LocalAuthCubitStateCopyWith(
+          LocalAuthCubitState value, $Res Function(LocalAuthCubitState) then) =
+      _$LocalAuthCubitStateCopyWithImpl<$Res, LocalAuthCubitState>;
   @useResult
   $Res call(
       {SupportState supportState,
@@ -44,10 +44,9 @@ abstract class $LocalAuthRepositoryStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LocalAuthRepositoryStateCopyWithImpl<$Res,
-        $Val extends LocalAuthRepositoryState>
-    implements $LocalAuthRepositoryStateCopyWith<$Res> {
-  _$LocalAuthRepositoryStateCopyWithImpl(this._value, this._then);
+class _$LocalAuthCubitStateCopyWithImpl<$Res, $Val extends LocalAuthCubitState>
+    implements $LocalAuthCubitStateCopyWith<$Res> {
+  _$LocalAuthCubitStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -89,12 +88,11 @@ class _$LocalAuthRepositoryStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_LocalAuthRepositoryStateCopyWith<$Res>
-    implements $LocalAuthRepositoryStateCopyWith<$Res> {
-  factory _$$_LocalAuthRepositoryStateCopyWith(
-          _$_LocalAuthRepositoryState value,
-          $Res Function(_$_LocalAuthRepositoryState) then) =
-      __$$_LocalAuthRepositoryStateCopyWithImpl<$Res>;
+abstract class _$$_LocalAuthCubitStateCopyWith<$Res>
+    implements $LocalAuthCubitStateCopyWith<$Res> {
+  factory _$$_LocalAuthCubitStateCopyWith(_$_LocalAuthCubitState value,
+          $Res Function(_$_LocalAuthCubitState) then) =
+      __$$_LocalAuthCubitStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -106,12 +104,11 @@ abstract class _$$_LocalAuthRepositoryStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LocalAuthRepositoryStateCopyWithImpl<$Res>
-    extends _$LocalAuthRepositoryStateCopyWithImpl<$Res,
-        _$_LocalAuthRepositoryState>
-    implements _$$_LocalAuthRepositoryStateCopyWith<$Res> {
-  __$$_LocalAuthRepositoryStateCopyWithImpl(_$_LocalAuthRepositoryState _value,
-      $Res Function(_$_LocalAuthRepositoryState) _then)
+class __$$_LocalAuthCubitStateCopyWithImpl<$Res>
+    extends _$LocalAuthCubitStateCopyWithImpl<$Res, _$_LocalAuthCubitState>
+    implements _$$_LocalAuthCubitStateCopyWith<$Res> {
+  __$$_LocalAuthCubitStateCopyWithImpl(_$_LocalAuthCubitState _value,
+      $Res Function(_$_LocalAuthCubitState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +120,7 @@ class __$$_LocalAuthRepositoryStateCopyWithImpl<$Res>
     Object? canCheckBiometrics = null,
     Object? authorized = null,
   }) {
-    return _then(_$_LocalAuthRepositoryState(
+    return _then(_$_LocalAuthCubitState(
       supportState: null == supportState
           ? _value.supportState
           : supportState // ignore: cast_nullable_to_non_nullable
@@ -150,8 +147,8 @@ class __$$_LocalAuthRepositoryStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LocalAuthRepositoryState implements _LocalAuthRepositoryState {
-  const _$_LocalAuthRepositoryState(
+class _$_LocalAuthCubitState implements _LocalAuthCubitState {
+  const _$_LocalAuthCubitState(
       {this.supportState = SupportState.unknown,
       final List<BiometricType> availableBiometrics = const <BiometricType>[],
       this.isAuthenticating = false,
@@ -183,14 +180,14 @@ class _$_LocalAuthRepositoryState implements _LocalAuthRepositoryState {
 
   @override
   String toString() {
-    return 'LocalAuthRepositoryState(supportState: $supportState, availableBiometrics: $availableBiometrics, isAuthenticating: $isAuthenticating, canCheckBiometrics: $canCheckBiometrics, authorized: $authorized)';
+    return 'LocalAuthCubitState(supportState: $supportState, availableBiometrics: $availableBiometrics, isAuthenticating: $isAuthenticating, canCheckBiometrics: $canCheckBiometrics, authorized: $authorized)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LocalAuthRepositoryState &&
+            other is _$_LocalAuthCubitState &&
             (identical(other.supportState, supportState) ||
                 other.supportState == supportState) &&
             const DeepCollectionEquality()
@@ -215,19 +212,19 @@ class _$_LocalAuthRepositoryState implements _LocalAuthRepositoryState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LocalAuthRepositoryStateCopyWith<_$_LocalAuthRepositoryState>
-      get copyWith => __$$_LocalAuthRepositoryStateCopyWithImpl<
-          _$_LocalAuthRepositoryState>(this, _$identity);
+  _$$_LocalAuthCubitStateCopyWith<_$_LocalAuthCubitState> get copyWith =>
+      __$$_LocalAuthCubitStateCopyWithImpl<_$_LocalAuthCubitState>(
+          this, _$identity);
 }
 
-abstract class _LocalAuthRepositoryState implements LocalAuthRepositoryState {
-  const factory _LocalAuthRepositoryState(
+abstract class _LocalAuthCubitState implements LocalAuthCubitState {
+  const factory _LocalAuthCubitState(
           {final SupportState supportState,
           final List<BiometricType> availableBiometrics,
           final bool isAuthenticating,
           final bool canCheckBiometrics,
           required final Option<Either<String, String>> authorized}) =
-      _$_LocalAuthRepositoryState;
+      _$_LocalAuthCubitState;
 
   @override
   SupportState get supportState;
@@ -241,6 +238,6 @@ abstract class _LocalAuthRepositoryState implements LocalAuthRepositoryState {
   Option<Either<String, String>> get authorized;
   @override
   @JsonKey(ignore: true)
-  _$$_LocalAuthRepositoryStateCopyWith<_$_LocalAuthRepositoryState>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_LocalAuthCubitStateCopyWith<_$_LocalAuthCubitState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
