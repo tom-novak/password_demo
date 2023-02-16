@@ -1,9 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:password_demo/data/data.dart';
-import 'package:password_demo/data/password_item_dto.dart';
-import 'package:password_demo/domain/password_repository.dart';
-
-const int kItemsPerPage = 10;
+import 'package:password_demo/domain/domain.dart';
 
 class LocalPasswordRepository extends PasswordRepository {
   final PasswordDataStore _dataStore;

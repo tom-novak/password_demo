@@ -4,13 +4,15 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:password_demo/application/application.dart';
-import 'package:password_demo/application/login/login_page.dart';
-import 'package:password_demo/application/widgets/general_error_page.dart';
-import 'package:password_demo/data/password_items_database.dart';
-import 'package:password_demo/data/sqlite/password_data_dao.dart';
 import 'package:password_demo/domain/password_repository.dart';
-import 'package:password_demo/infrastructure/local_auth/local_auth_cubit.dart';
 import 'package:password_demo/infrastructure/local_password_repository.dart';
+import 'package:password_demo/infrastructure/sqlite/password_items_database.dart';
+import 'package:password_demo/infrastructure/sqlite/password_data_dao.dart';
+import 'package:password_demo/presentation/edit_password/edit_password_page.dart';
+import 'package:password_demo/presentation/login/login_page.dart';
+import 'package:password_demo/presentation/password_detail/password_detail_page.dart';
+import 'package:password_demo/presentation/password_list/password_list_page.dart';
+import 'package:password_demo/presentation/widgets/widgets.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

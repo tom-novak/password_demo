@@ -1,6 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:password_demo/data/data.dart';
-import 'package:password_demo/data/password_item_dto.dart';
+import 'package:password_demo/domain/domain.dart';
 
 @dao
 abstract class PasswordDataDao extends PasswordDataStore {
