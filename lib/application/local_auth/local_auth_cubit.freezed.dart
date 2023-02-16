@@ -88,11 +88,11 @@ class _$LocalAuthCubitStateCopyWithImpl<$Res, $Val extends LocalAuthCubitState>
 }
 
 /// @nodoc
-abstract class _$$_LocalAuthCubitStateCopyWith<$Res>
+abstract class _$$_AuthCubitStateCopyWith<$Res>
     implements $LocalAuthCubitStateCopyWith<$Res> {
-  factory _$$_LocalAuthCubitStateCopyWith(_$_LocalAuthCubitState value,
-          $Res Function(_$_LocalAuthCubitState) then) =
-      __$$_LocalAuthCubitStateCopyWithImpl<$Res>;
+  factory _$$_AuthCubitStateCopyWith(
+          _$_AuthCubitState value, $Res Function(_$_AuthCubitState) then) =
+      __$$_AuthCubitStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -104,11 +104,11 @@ abstract class _$$_LocalAuthCubitStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LocalAuthCubitStateCopyWithImpl<$Res>
-    extends _$LocalAuthCubitStateCopyWithImpl<$Res, _$_LocalAuthCubitState>
-    implements _$$_LocalAuthCubitStateCopyWith<$Res> {
-  __$$_LocalAuthCubitStateCopyWithImpl(_$_LocalAuthCubitState _value,
-      $Res Function(_$_LocalAuthCubitState) _then)
+class __$$_AuthCubitStateCopyWithImpl<$Res>
+    extends _$LocalAuthCubitStateCopyWithImpl<$Res, _$_AuthCubitState>
+    implements _$$_AuthCubitStateCopyWith<$Res> {
+  __$$_AuthCubitStateCopyWithImpl(
+      _$_AuthCubitState _value, $Res Function(_$_AuthCubitState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -120,7 +120,7 @@ class __$$_LocalAuthCubitStateCopyWithImpl<$Res>
     Object? canCheckBiometrics = null,
     Object? authorized = null,
   }) {
-    return _then(_$_LocalAuthCubitState(
+    return _then(_$_AuthCubitState(
       supportState: null == supportState
           ? _value.supportState
           : supportState // ignore: cast_nullable_to_non_nullable
@@ -147,8 +147,8 @@ class __$$_LocalAuthCubitStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LocalAuthCubitState implements _LocalAuthCubitState {
-  const _$_LocalAuthCubitState(
+class _$_AuthCubitState implements _AuthCubitState {
+  const _$_AuthCubitState(
       {this.supportState = SupportState.unknown,
       final List<BiometricType> availableBiometrics = const <BiometricType>[],
       this.isAuthenticating = false,
@@ -187,7 +187,7 @@ class _$_LocalAuthCubitState implements _LocalAuthCubitState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LocalAuthCubitState &&
+            other is _$_AuthCubitState &&
             (identical(other.supportState, supportState) ||
                 other.supportState == supportState) &&
             const DeepCollectionEquality()
@@ -212,19 +212,18 @@ class _$_LocalAuthCubitState implements _LocalAuthCubitState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LocalAuthCubitStateCopyWith<_$_LocalAuthCubitState> get copyWith =>
-      __$$_LocalAuthCubitStateCopyWithImpl<_$_LocalAuthCubitState>(
-          this, _$identity);
+  _$$_AuthCubitStateCopyWith<_$_AuthCubitState> get copyWith =>
+      __$$_AuthCubitStateCopyWithImpl<_$_AuthCubitState>(this, _$identity);
 }
 
-abstract class _LocalAuthCubitState implements LocalAuthCubitState {
-  const factory _LocalAuthCubitState(
+abstract class _AuthCubitState implements LocalAuthCubitState {
+  const factory _AuthCubitState(
           {final SupportState supportState,
           final List<BiometricType> availableBiometrics,
           final bool isAuthenticating,
           final bool canCheckBiometrics,
           required final Option<Either<String, String>> authorized}) =
-      _$_LocalAuthCubitState;
+      _$_AuthCubitState;
 
   @override
   SupportState get supportState;
@@ -238,6 +237,6 @@ abstract class _LocalAuthCubitState implements LocalAuthCubitState {
   Option<Either<String, String>> get authorized;
   @override
   @JsonKey(ignore: true)
-  _$$_LocalAuthCubitStateCopyWith<_$_LocalAuthCubitState> get copyWith =>
+  _$$_AuthCubitStateCopyWith<_$_AuthCubitState> get copyWith =>
       throw _privateConstructorUsedError;
 }

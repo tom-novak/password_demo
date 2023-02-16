@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:password_demo/infrastructure/local_auth/local_auth_cubit.dart';
+import 'package:password_demo/application/application.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

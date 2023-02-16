@@ -3,10 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:password_demo/application/application.dart';
-import 'package:password_demo/application/widgets/center_progress_indicator.dart';
-import 'package:password_demo/constants.dart';
-import 'package:password_demo/domain/password_repository.dart';
+import 'package:password_demo/domain/domain.dart';
+import 'package:password_demo/presentation/password_detail/password_detail_view_model.dart';
+import 'package:password_demo/presentation/widgets/center_progress_indicator.dart';
 
 class PasswordDetailPage extends StatefulWidget {
   final int? itemId;

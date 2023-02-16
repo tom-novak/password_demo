@@ -14,6 +14,6 @@ class EditPasswordState with _$EditPasswordState {
     Option<Either<PasswordItemDto, String>>? itemOrError,
   }) = _EditPasswordState;
 
-  factory EditPasswordState.initial() =>
-      EditPasswordState(stateOrError: none(), itemOrError: none(), passwordOrError: none());
+  factory EditPasswordState.initial() => EditPasswordState(
+      stateOrError: none(), itemOrError: none(), passwordOrError: none());
 }

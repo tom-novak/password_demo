@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:password_demo/application/application.dart';
-import 'package:password_demo/data/password_item_dto.dart';
-import 'package:password_demo/domain/password_repository.dart';
+import 'package:password_demo/domain/domain.dart';
+import 'package:password_demo/presentation/edit_password/edit_password_view_model.dart';
 
 class EditPasswordPage extends StatefulWidget {
   final int? itemId;

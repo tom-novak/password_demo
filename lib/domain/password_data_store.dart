@@ -1,4 +1,4 @@
-import 'package:password_demo/data/password_item_dto.dart';
+import 'package:password_demo/domain/domain.dart';
 
 abstract class PasswordDataStore {
   Future<PasswordItemDto?> get(int itemId);

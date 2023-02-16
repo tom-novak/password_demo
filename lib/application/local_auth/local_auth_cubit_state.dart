@@ -8,7 +8,7 @@ class LocalAuthCubitState with _$LocalAuthCubitState {
     @Default(false) bool isAuthenticating,
     @Default(false) bool canCheckBiometrics,
     required Option<Either<String, String>> authorized,
-  }) = _LocalAuthCubitState;
+  }) = _AuthCubitState;
 
   factory LocalAuthCubitState.initial() =>
       LocalAuthCubitState(authorized: none());
