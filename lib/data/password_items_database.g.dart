@@ -155,7 +155,7 @@ class _$PasswordDataDao extends PasswordDataDao {
     int offset,
   ) async {
     return _queryAdapter.queryList(
-        'SELECT * FROM PasswordItem WHERE oid NOT IN (SELECT oid FROM PasswordItem ORDER BY id ASC LIMIT ?2) ORDER BY id ASC LIMIT ?1',
+        'SELECT * FROM PasswordItem WHERE oid NOT IN (SELECT oid FROM PasswordItem ORDER BY id DESC LIMIT ?2) ORDER BY id DESC LIMIT ?1',
         mapper: (Map<String, Object?> row) => PasswordItemDto(id: row['id'] as int?, name: row['name'] as String, login: row['login'] as String),
         arguments: [itemsCount, offset]);
   }

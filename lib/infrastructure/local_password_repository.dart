@@ -3,50 +3,51 @@ import 'package:password_demo/data/data.dart';
 import 'package:password_demo/data/password_item_dto.dart';
 import 'package:password_demo/domain/password_repository.dart';
 
-const int kItemsPerPage = 50;
+const int kItemsPerPage = 10;
 
 class LocalPasswordRepository extends PasswordRepository {
-  final PasswordDataStore dataStore;
-  final FlutterSecureStorage secureStorage;
+  final PasswordDataStore _dataStore;
+  final FlutterSecureStorage _secureStorage;
 
   LocalPasswordRepository({
-    required this.dataStore,
-    required this.secureStorage,
-  });
+    required PasswordDataStore dataStore,
+    required FlutterSecureStorage secureStorage,
+  })  : _secureStorage = secureStorage,
+        _dataStore = dataStore;
 
   @override
   Future<void> delete({required int itemId}) async {
-    var item = await dataStore.get(itemId);
+    var item = await _dataStore.get(itemId);
     if (item != null) {
-      await secureStorage.delete(key: item.name);
+      await _secureStorage.delete(key: item.name);
     }
-    return dataStore.remove(itemId);
+    return _dataStore.remove(itemId);
   }
 
   @override
   Future<PasswordItemDto?> get({required int itemId}) async {
-    var item = await dataStore.get(itemId);
+    var item = await _dataStore.get(itemId);
     if (item != null) {
-      item.password = await secureStorage.read(key: item.name);
+      item.password = await _secureStorage.read(key: item.name);
     }
     return item;
   }
 
   @override
   Future<void> save({required PasswordItemDto item}) async {
-    await dataStore.create(item);
-    await secureStorage.write(key: item.name, value: item.password);
+    await _dataStore.create(item);
+    await _secureStorage.write(key: item.name, value: item.password);
   }
 
   @override
   Future<void> update({required PasswordItemDto item}) async {
-    await dataStore.updateItem(item);
-    await secureStorage.write(key: item.name, value: item.password);
+    await _dataStore.updateItem(item);
+    await _secureStorage.write(key: item.name, value: item.password);
   }
 
   @override
   Future<List<PasswordItemDto>> getPage(
       {required int page, int itemsPerPage = kItemsPerPage}) async {
-    return dataStore.getByOffset(itemsPerPage, page * itemsPerPage);
+    return _dataStore.getByOffset(itemsPerPage, (page - 1) * itemsPerPage);
   }
 }

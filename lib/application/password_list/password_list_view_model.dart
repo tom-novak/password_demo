@@ -12,11 +12,19 @@ class PasswordListViewModel extends Cubit<PasswordListState> {
 
   PasswordListViewModel({
     required this.repository,
-  }) : super(PasswordListState.inital());
+  }) : super(PasswordListState.initial());
 
-  void loadNext() async {
-    emit(state.copyWith(isLoading: true, page: state.page + 1));
-
+  void loadPage(int pageKey) async {
+    emit(state.copyWith(page: pageKey, nextPageOrFailure: none()));
     var result = await repository.getPage(page: state.page);
+    emit(state.copyWith(
+        isLoading: false, nextPageOrFailure: some(left(result))));
+  }
+
+  void refresh() async {
+    emit(state.copyWith(isLoading: true, page: 1, nextPageOrFailure: none()));
+    var result = await repository.getPage(page: state.page);
+    emit(state.copyWith(
+        isLoading: false, nextPageOrFailure: some(left(result))));
   }
 }

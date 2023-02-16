@@ -22,6 +22,6 @@ abstract class PasswordDataDao extends PasswordDataStore {
 
   @override
   @Query(
-      'SELECT * FROM PasswordItem WHERE oid NOT IN (SELECT oid FROM PasswordItem ORDER BY id ASC LIMIT :offset) ORDER BY id ASC LIMIT :itemsCount')
+      'SELECT * FROM PasswordItem WHERE oid NOT IN (SELECT oid FROM PasswordItem ORDER BY id DESC LIMIT :offset) ORDER BY id DESC LIMIT :itemsCount')
   Future<List<PasswordItemDto>> getByOffset(int itemsCount, int offset);
 }

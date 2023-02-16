@@ -2,15 +2,16 @@ part of 'password_list_view_model.dart';
 
 @freezed
 class PasswordListState with _$PasswordListState {
+  @Assert('nextPageOrFailure != null', 'nextPageOrFailure cannot be empty')
   const factory PasswordListState({
     @Default(false) final bool isLoading,
-    @Default(0) int page,
-    Either<PasswordItemDto, String>? itemsOrFailure,
+    @Default(1) int page,
+    Option<Either<List<PasswordItemDto>, String>>? nextPageOrFailure,
   }) = _PasswordListState;
 
-  factory PasswordListState.inital() => const PasswordListState(
+  factory PasswordListState.initial() => PasswordListState(
         isLoading: false,
-        page: 0,
-        itemsOrFailure: null,
+        page: 1,
+        nextPageOrFailure: none(),
       );
 }

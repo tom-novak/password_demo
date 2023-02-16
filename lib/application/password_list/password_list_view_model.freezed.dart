@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PasswordListState {
   bool get isLoading => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
-  Either<PasswordItemDto, String>? get itemsOrFailure =>
+  Option<Either<List<PasswordItemDto>, String>>? get nextPageOrFailure =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $PasswordListStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       int page,
-      Either<PasswordItemDto, String>? itemsOrFailure});
+      Option<Either<List<PasswordItemDto>, String>>? nextPageOrFailure});
 }
 
 /// @nodoc
@@ -53,7 +53,7 @@ class _$PasswordListStateCopyWithImpl<$Res, $Val extends PasswordListState>
   $Res call({
     Object? isLoading = null,
     Object? page = null,
-    Object? itemsOrFailure = freezed,
+    Object? nextPageOrFailure = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -64,10 +64,10 @@ class _$PasswordListStateCopyWithImpl<$Res, $Val extends PasswordListState>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
-      itemsOrFailure: freezed == itemsOrFailure
-          ? _value.itemsOrFailure
-          : itemsOrFailure // ignore: cast_nullable_to_non_nullable
-              as Either<PasswordItemDto, String>?,
+      nextPageOrFailure: freezed == nextPageOrFailure
+          ? _value.nextPageOrFailure
+          : nextPageOrFailure // ignore: cast_nullable_to_non_nullable
+              as Option<Either<List<PasswordItemDto>, String>>?,
     ) as $Val);
   }
 }
@@ -83,7 +83,7 @@ abstract class _$$_PasswordListStateCopyWith<$Res>
   $Res call(
       {bool isLoading,
       int page,
-      Either<PasswordItemDto, String>? itemsOrFailure});
+      Option<Either<List<PasswordItemDto>, String>>? nextPageOrFailure});
 }
 
 /// @nodoc
@@ -99,7 +99,7 @@ class __$$_PasswordListStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? page = null,
-    Object? itemsOrFailure = freezed,
+    Object? nextPageOrFailure = freezed,
   }) {
     return _then(_$_PasswordListState(
       isLoading: null == isLoading
@@ -110,10 +110,10 @@ class __$$_PasswordListStateCopyWithImpl<$Res>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
-      itemsOrFailure: freezed == itemsOrFailure
-          ? _value.itemsOrFailure
-          : itemsOrFailure // ignore: cast_nullable_to_non_nullable
-              as Either<PasswordItemDto, String>?,
+      nextPageOrFailure: freezed == nextPageOrFailure
+          ? _value.nextPageOrFailure
+          : nextPageOrFailure // ignore: cast_nullable_to_non_nullable
+              as Option<Either<List<PasswordItemDto>, String>>?,
     ));
   }
 }
@@ -122,7 +122,8 @@ class __$$_PasswordListStateCopyWithImpl<$Res>
 
 class _$_PasswordListState implements _PasswordListState {
   const _$_PasswordListState(
-      {this.isLoading = false, this.page = 0, this.itemsOrFailure});
+      {this.isLoading = false, this.page = 1, this.nextPageOrFailure})
+      : assert(nextPageOrFailure != null, 'nextPageOrFailure cannot be empty');
 
   @override
   @JsonKey()
@@ -131,11 +132,11 @@ class _$_PasswordListState implements _PasswordListState {
   @JsonKey()
   final int page;
   @override
-  final Either<PasswordItemDto, String>? itemsOrFailure;
+  final Option<Either<List<PasswordItemDto>, String>>? nextPageOrFailure;
 
   @override
   String toString() {
-    return 'PasswordListState(isLoading: $isLoading, page: $page, itemsOrFailure: $itemsOrFailure)';
+    return 'PasswordListState(isLoading: $isLoading, page: $page, nextPageOrFailure: $nextPageOrFailure)';
   }
 
   @override
@@ -146,12 +147,13 @@ class _$_PasswordListState implements _PasswordListState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.page, page) || other.page == page) &&
-            (identical(other.itemsOrFailure, itemsOrFailure) ||
-                other.itemsOrFailure == itemsOrFailure));
+            (identical(other.nextPageOrFailure, nextPageOrFailure) ||
+                other.nextPageOrFailure == nextPageOrFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, page, itemsOrFailure);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, page, nextPageOrFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -163,17 +165,17 @@ class _$_PasswordListState implements _PasswordListState {
 
 abstract class _PasswordListState implements PasswordListState {
   const factory _PasswordListState(
-          {final bool isLoading,
-          final int page,
-          final Either<PasswordItemDto, String>? itemsOrFailure}) =
-      _$_PasswordListState;
+      {final bool isLoading,
+      final int page,
+      final Option<Either<List<PasswordItemDto>, String>>?
+          nextPageOrFailure}) = _$_PasswordListState;
 
   @override
   bool get isLoading;
   @override
   int get page;
   @override
-  Either<PasswordItemDto, String>? get itemsOrFailure;
+  Option<Either<List<PasswordItemDto>, String>>? get nextPageOrFailure;
   @override
   @JsonKey(ignore: true)
   _$$_PasswordListStateCopyWith<_$_PasswordListState> get copyWith =>
