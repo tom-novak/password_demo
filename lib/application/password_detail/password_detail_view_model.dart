@@ -31,8 +31,4 @@ class PasswordDetailViewModel extends Cubit<PasswordDetailState> {
       ),
     );
   }
-
-  void loadPassword(String key) async {
-
-  }
 }
